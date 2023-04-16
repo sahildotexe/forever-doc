@@ -92,7 +92,11 @@ const storage = new Web3Storage({ token : web3token });
         <hr />
         <label htmlFor="doc_name"> Doc name: </label>
         <input type="text" name="doc_name"  id="doc_name"    onChange= { (e) => setDocName(e.target.value) } />
-        <input type="file" name="doc" id="doc" onChange={(e) => setFile(e.target.files[0])} />  
+        <input type="file" name="doc" id="doc" onChange={(e) => {
+          if (e.target.files && e.target.files.length > 0) {
+            setFile(e.target.files[0])
+          }
+        }} />  
         <button onClick={addDocument}>Add doc</button>
         <hr />
         <h1>All docs: </h1>
