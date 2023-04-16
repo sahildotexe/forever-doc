@@ -68,6 +68,12 @@ export default function Home() {
       const smartAccount = new SmartAccount(web3Provider, {
         activeNetworkId: ChainId.POLYGON_MUMBAI,
         supportedNetworksIds: [ChainId.POLYGON_MUMBAI],
+        networkConfig: [
+          {
+            chainId: ChainId.POLYGON_MUMBAI,
+            dappAPIKey: "FESVe0fGT.0d50b7dd-d352-44ea-8e55-458f074451bf",
+          },
+        ],
       })
       await smartAccount.init()
       setSmartAccount(smartAccount)
