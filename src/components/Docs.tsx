@@ -19,8 +19,9 @@ const Docs: React.FC<Props> = ({ smartAccount, provider }) => {
   const [file, setFile] = useState<any | null>(null);
 
 
-const counterAddress = "0xCa2d07Aa216f54008d5819711b854527373B0891"
-const storage = new Web3Storage({ token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDI1ZThhYjY2OGI1MDUxZTBBQjg1YUQ4OEIxZkJDNDQwMzc2YWI0YkUiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2ODE2NjcwODg3MTYsIm5hbWUiOiJmb3ZldmVyLWRvY3MifQ.WDLbvbhZk0UdwBq2PWF85ccqszfdfWJdx8Ndu-WiRs0" });
+const counterAddress: any = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
+const web3token: any = process.env.NEXT_PUBLIC_WEB3_TOKEN;
+const storage = new Web3Storage({ token : web3token });
 
 
   useEffect(() => {

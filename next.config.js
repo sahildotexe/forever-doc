@@ -10,7 +10,10 @@ const nextConfig = {
       }
     }
     return config
-  }
+  },
+  env: {
+    CONTRACT_ADDRESS: process.env.CONTRACT_ADDRESS,
+  },
 }
 
 module.exports = nextConfig

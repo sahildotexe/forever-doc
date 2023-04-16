@@ -11,7 +11,7 @@ export default function Home() {
   const sdkRef = useRef<SocialLogin | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
   const [provider, setProvider] = useState<any>(null);
-
+  const biconomyKey: any = process.env.NEXT_PUBLIC_BICONOMY_API
 
   useEffect(() => {
     let configureLogin:any
@@ -71,7 +71,7 @@ export default function Home() {
         networkConfig: [
           {
             chainId: ChainId.POLYGON_MUMBAI,
-            dappAPIKey: "FESVe0fGT.0d50b7dd-d352-44ea-8e55-458f074451bf",
+            dappAPIKey: biconomyKey,
           },
         ],
       })
