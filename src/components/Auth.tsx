@@ -16,7 +16,7 @@ export default function Home() {
   const [loading, setLoading] = useState<boolean>(false)
   const [provider, setProvider] = useState<any>(null);
   const biconomyKey: any = process.env.NEXT_PUBLIC_BICONOMY_API
-  const whitelistUrl: any = process.env.NEXT_PUBLIC_WHITELIST_URL
+  const whitelist: any = process.env.NEXT_PUBLIC_WHITELIST_URL
 
   useEffect(() => {
     let configureLogin:any
@@ -40,11 +40,11 @@ export default function Home() {
   async function login() {
     if (!sdkRef.current) {
       const socialLoginSDK = new SocialLogin()
-      const signature1 = await socialLoginSDK.whitelistUrl(whitelistUrl)
+      const signature1 = await socialLoginSDK.whitelistUrl('https://immortal-docs.vercel.app/')
       await socialLoginSDK.init({
         chainId: ethers.utils.hexValue(ChainId.POLYGON_MUMBAI),
         whitelistUrls: {
-          whitelistUrl: signature1,
+          'https://immortal-docs.vercel.app/': signature1,
         }
       })
       sdkRef.current = socialLoginSDK
