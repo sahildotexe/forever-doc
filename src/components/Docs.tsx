@@ -95,6 +95,14 @@ const storage = new Web3Storage({ token : web3token });
       }
       const txResponse = await smartAccount.sendTransaction({ transaction: tx1})
       const txHash = await txResponse.wait();
+      toast({
+        title: 'thanks for waiting...',
+        description: "paying gas fees on your behalf!!",
+        status: 'info',
+        duration: 9000,
+        isClosable: true,
+      })
+  
       await getDocs()
       setIsUploading(false)
       toast({
@@ -131,7 +139,13 @@ const storage = new Web3Storage({ token : web3token });
           if (e.target.files && e.target.files.length > 0) {
             // max size 10MB
             if (e.target.files[0].size > 10000000) {
-              alert("File size is too big. Max size is 10MB")
+              toast({
+                title: 'file too large',
+                description: "please select a file less than 10MB",
+                status: 'error',
+                duration: 9000,
+                isClosable: true,
+              })
               e.target.value = ""
               return
             }

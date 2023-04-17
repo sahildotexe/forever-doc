@@ -174,8 +174,17 @@ export default function Home() {
         !smartAccount && !loading && (
             <VStack>
               <Box m='5' >
+              <Center>
               <Image src={mockup} alt='logo' height={400} />
-              <Heading size='xl' m='8' my='10'>immortalize your docs - no wallet needed!</Heading>
+              </Center>
+              <Center>
+              <Heading size='xl' m='8'>documents that never die.</Heading>
+              </Center>
+              <Center>
+                <Text width={{base:"auto",md:"60vw" }} align='justify' fontSize='xl' m='4' my='4' p={{base: '2', md: '6'}} >
+                introducing the easiest way to immortalize your important documents.your documents will live on forever without the need for a crypto wallet.the best part? you don't have to worry about any gas fees or annoying transaction popups.
+                </Text>
+              </Center>
               </Box>
               <Box minWidth='max-content' m='5' >
                 <Button colorScheme='blue' onClick={login}> get started</Button>
