@@ -16,6 +16,7 @@ export default function Home() {
   const [loading, setLoading] = useState<boolean>(false)
   const [provider, setProvider] = useState<any>(null);
   const biconomyKey: any = process.env.NEXT_PUBLIC_BICONOMY_API
+  const whitelistUrl: any = process.env.NEXT_PUBLIC_WHITELIST_URL
 
   useEffect(() => {
     let configureLogin:any
@@ -39,11 +40,11 @@ export default function Home() {
   async function login() {
     if (!sdkRef.current) {
       const socialLoginSDK = new SocialLogin()
-      const signature1 = await socialLoginSDK.whitelistUrl('http://localhost:3000')
+      const signature1 = await socialLoginSDK.whitelistUrl(whitelistUrl)
       await socialLoginSDK.init({
         chainId: ethers.utils.hexValue(ChainId.POLYGON_MUMBAI),
         whitelistUrls: {
-          'http://localhost:3000': signature1,
+          whitelistUrl: signature1,
         }
       })
       sdkRef.current = socialLoginSDK
@@ -108,7 +109,7 @@ export default function Home() {
       <div className='head'>
       <Flex minWidth='max-content' p='4' alignItems='center' gap='2' display={{ base: 'none', md: 'flex' }}>
   <Box p='2'>
-    <Heading size='xl'  >immortal docs</Heading>
+    <Heading size='xl'>immortal docs</Heading>
   </Box>
   <Spacer />
    {!smartAccount && !loading && (
