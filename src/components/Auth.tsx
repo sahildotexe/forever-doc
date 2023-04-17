@@ -183,7 +183,7 @@ export default function Home() {
               </Center>
               <Center>
                 <Text width={{base:"auto",md:"60vw" }} align='justify' fontSize='xl' m='4' my='4' p={{base: '2', md: '6'}} >
-                introducing the easiest way to immortalize your important documents.your documents will live on forever without the need for a crypto wallet.the best part? you don't have to worry about any gas fees or annoying transaction popups.
+                introducing the easiest way to immortalize your important documents.the documents will live on forever on chain.the best part? you don't have to worry about having a crypto wallet, paying any gas fees or annoying transaction popups.
                 </Text>
               </Center>
               </Box>
