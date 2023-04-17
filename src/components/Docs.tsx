@@ -94,6 +94,11 @@ const storage = new Web3Storage({ token : web3token });
         <input type="text" name="doc_name"  id="doc_name"    onChange= { (e) => setDocName(e.target.value) } />
         <input type="file" name="doc" id="doc" onChange={(e) => {
           if (e.target.files && e.target.files.length > 0) {
+            // max size 10MB
+            if (e.target.files[0].size > 10000000) {
+              alert("File size is too big. Max size is 10MB")
+              return
+            }
             setFile(e.target.files[0])
           }
         }} />  
