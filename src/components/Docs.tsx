@@ -97,6 +97,7 @@ const storage = new Web3Storage({ token : web3token });
             // max size 10MB
             if (e.target.files[0].size > 10000000) {
               alert("File size is too big. Max size is 10MB")
+              e.target.value = ""
               return
             }
             setFile(e.target.files[0])
