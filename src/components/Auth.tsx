@@ -4,6 +4,10 @@ import { ChainId } from '@biconomy/core-types'
 import { ethers } from 'ethers'
 import SmartAccount from '@biconomy/smart-account'
 import Docs from './Docs'
+import { Box, Button, ButtonGroup, Card, CardBody, CardFooter, CardHeader, Center, Flex, Grid, Heading, HStack, IconButton, Img, Link, Menu, MenuButton, MenuItem, MenuList, SimpleGrid, Spacer, Spinner, Stack, StackDivider, Text, VStack } from '@chakra-ui/react'
+import { AddIcon, ExternalLinkIcon, HamburgerIcon, RepeatIcon } from '@chakra-ui/icons'
+import Image from 'next/image'
+import mockup from "../../public/mockup.png"
 
 export default function Home() {
   const [smartAccount, setSmartAccount] = useState<SmartAccount | null>(null)
@@ -100,24 +104,155 @@ export default function Home() {
 
 
   return (
-    <div>
-      <h1>BICONOMY AUTH</h1>
+    <div className='main-app'>
+      <div className='head'>
+      <Flex minWidth='max-content' p='4' alignItems='center' gap='2' display={{ base: 'none', md: 'flex' }}>
+  <Box p='2'>
+    <Heading size='xl'  >immortal docs</Heading>
+  </Box>
+  <Spacer />
+   {!smartAccount && !loading && (
+
+  <ButtonGroup gap='2'>
+    <Button colorScheme='blue' onClick={login}>sign in</Button>
+  </ButtonGroup>
+
+    )} 
+    {smartAccount && !loading && (
+      <ButtonGroup gap='2'>
+        {smartAccount && smartAccount.address && (
+  <Box p='2'>
+    <Heading size='sm'>signed in as: 
+      <Link href={`https://explorer-mumbai.maticvigil.com/address/${smartAccount.address}`} isExternal>
       {
-        !smartAccount && !loading && <button onClick={login}>Login</button>
+        " " + smartAccount.address.slice(0, 6) + '...' + smartAccount.address.slice(-4)
+      }
+      </Link>
+    </Heading>
+  </Box>
+  )}
+              <Button colorScheme='blue' onClick={logout}>sign out</Button>
+      </ButtonGroup>
+    )}
+    {
+      loading && (<Button colorScheme='blue'> 
+        <Spinner m='2' />signing in</Button>) 
+    }
+</Flex>
+
+  {/* for mobile view */}
+  <Flex minWidth='max-content' p='4' alignItems='center' gap='2' display={{ base: 'flex', md: 'none' }}>
+  <Box p='2'>
+    <Heading size='xl'  >immortal docs</Heading>
+  </Box>
+  <Spacer />
+  <Menu>
+  <MenuButton
+    as={IconButton}
+    aria-label='Options'
+    icon={<HamburgerIcon />}
+    variant='outline'
+  />
+  <MenuList>
+    {!smartAccount && !loading && (
+      <MenuItem onClick={login}>sign in</MenuItem>
+    )}
+    {smartAccount && !loading && (
+      <MenuItem onClick={logout}>sign out</MenuItem>
+    )}
+    {
+      loading && (<MenuItem>
+        <Spinner m='2' />signing in
+      </MenuItem>)
+    }
+  </MenuList>
+</Menu>
+</Flex>
+
+      </div>
+      {
+        !smartAccount && !loading && (
+            <VStack>
+              <Box m='5' >
+              <Image src={mockup} alt='logo' height={400} />
+              <Heading size='xl' m='8' my='10'>immortalize your docs - no wallet needed!</Heading>
+              </Box>
+              <Box minWidth='max-content' m='5' >
+                <Button colorScheme='blue' onClick={login}> get started</Button>
+              </Box>
+              <Box p='10' >
+              {/* <Card bgColor={"gray.100"} textColor={"blackAlpha.800"} variant={"filled"}  >
+  <CardHeader>
+    <Heading size='md'>Key Features</Heading>
+  </CardHeader>
+
+  <CardBody>
+    <Stack divider={<StackDivider />} spacing='4'>
+      <Box>
+        <Heading size='xs' textTransform='uppercase'>
+        Gasless transactions
+        </Heading>
+        <Text pt='2' fontSize='sm'>
+        Keep your wallet fat, no fees attached!
+        </Text>
+      </Box>
+      <Box>
+        <Heading size='xs' textTransform='uppercase'>
+        Social sign-in
+        </Heading>
+        <Text pt='2' fontSize='sm'>
+        No crypto wallet needed, just a couple of clicks!
+        </Text>
+      </Box>
+      <Box>
+        <Heading size='xs' textTransform='uppercase'>
+        Immortalization of documents
+        </Heading>
+        <Text pt='2' fontSize='sm'>
+        Personal digital vault for your files!
+        </Text>
+      </Box>
+      <Box>
+        <Heading size='xs' textTransform='uppercase'>
+        Web2-like UX
+        </Heading>
+        <Text pt='2' fontSize='sm'>
+        Immortalize your documents without the tech hassle!
+        </Text>
+      </Box>
+    </Stack>
+  </CardBody>
+             </Card>         */}
+              </Box>
+              
+            </VStack>
+        )
       }
       {
-        loading && <p>Loading account details...</p>
+        loading && (
+          <Box  minHeight='max-content'  className='loading'>
+            <Center><Spinner m='2' size='xl' color='blue' /></Center>
+            </Box>
+        )
       }
       {
         !!smartAccount && (
           <div>
-            <h3>Smart account address:</h3>
-            <p>{smartAccount.address}</p>
             <Docs smartAccount={smartAccount} provider={provider}  />
-            <button onClick={logout}>Logout</button>
           </div>
         )
       }
+
+<Box className='footer' my={"0px"} bgColor={"white"} position={'fixed'} bottom='0' width='100vw'>
+        <Center>
+          <Text size='md'  > crafted by &nbsp;
+            <Link fontWeight={"bold"} href='https://twitter.com/sahilkaling_' isExternal>
+              sahilkaling_ 👨‍💻 
+            </Link>      
+          </Text>
+        </Center>
+      </Box>
     </div>
+    
   )
 }
