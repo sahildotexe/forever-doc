@@ -253,15 +253,7 @@ export default function Home() {
         )
       }
 
-<Box className='footer' my={"0px"} bgColor={"white"} position={'fixed'} bottom='0' width='100vw'>
-        <Center>
-          <Text size='md'  > crafted by &nbsp;
-            <Link fontWeight={"bold"} href='https://twitter.com/sahilkaling_' isExternal>
-              sahilkaling_ 👨‍💻 
-            </Link>      
-          </Text>
-        </Center>
-      </Box>
+
     </div>
     
   )
